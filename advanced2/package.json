@@ -1,0 +1,12 @@
+{
+  "name": "advanced-web-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "index": "node ./src/index.js",
+    "about": "node ./src/about.js"
+  },
+  "author": "Jakub Hrášek <hrasek@damidev.com>",
+  "license": "ISC"
+}

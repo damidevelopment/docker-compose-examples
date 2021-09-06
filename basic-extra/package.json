@@ -1,0 +1,11 @@
+{
+  "name": "extra-web-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node ./src/index.js"
+  },
+  "author": "Jakub Hrášek <hrasek@damidev.com>",
+  "license": "ISC"
+}

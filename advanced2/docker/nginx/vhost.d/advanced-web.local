@@ -1,0 +1,5 @@
+location /about {
+    proxy_pass http://about_server:8080;
+    proxy_set_header Host $host;
+    proxy_http_version 1.1;
+}

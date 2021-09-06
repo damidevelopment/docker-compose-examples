@@ -1,0 +1,45 @@
+version: '3'
+services:
+  web_server:
+    image: node:16.3.0
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+    working_dir: "/app"
+    command: "npm run dev"
+    environment:
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_HOST=extra-web.local
+    networks:
+      - default_net
+    extra_hosts:
+      - extra-web2.local:172.5.0.2
+
+  web2_server:
+    image: node:16.3.0
+    restart: unless-stopped
+    volumes:
+      - ./:/app
+    working_dir: "/app"
+    command: "npm run dev"
+    environment:
+      - VIRTUAL_PORT=8080
+      - VIRTUAL_HOST=extra-web2.local
+    networks:
+      - default_net
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - 127.0.0.1:80:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+      default_net:
+        ipv4_address: 172.5.0.2
+
+networks:
+  default_net:
+    ipam:
+      config:
+        - subnet: 172.5.0.0/16
